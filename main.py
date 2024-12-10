@@ -172,8 +172,8 @@ async def upload(bot: Client, m: Message):
 
             try:  
                 
-                cc = f'**[▶️] Vid_ID :** {str(count).zfill(3)}\n\n**Video Title :** {name1}({res}).mkv\n\n**Batch Name :** {raw_text0}\n\n**Extracted By ➤ {MR}**'
-                cc1 = f'**[📑] Pdf_ID :** {str(count).zfill(3)}\n\n**File Title :** {name1}.pdf\n\n**Batch Name :** {raw_text0}\n\n**Extracted By ➤ {MR}**'                
+                cc = f'**[▶️] Vid_ID :** {str(count).zfill(3)}\n\n**Video Title :** {name1}\n\n**Batch Name :** {raw_text0}\n\n**Extracted By ➤ {MR}**'
+                cc1 = f'**[📑] Pdf_ID :** {str(count).zfill(3)}\n\n**File Title :** {name1}\n\n**Batch Name :** {raw_text0}\n\n**Extracted By ➤ {MR}**'                
                 if "*" in url:
                      a, k = url.split("*", 1)
                      url = a
