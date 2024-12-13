@@ -26,7 +26,7 @@ from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid
 from pyrogram.types.messages_and_media import message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-cookies_file = 'cookies.txt'
+cookie_file = 'cookies.txt'
 
 bot = Client(
     "bot",
