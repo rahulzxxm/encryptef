@@ -165,13 +165,11 @@ async def upload(bot: Client, m: Message):
                 ytf = f"b[height<={raw_text2}][ext=mp4]/bv[height<={raw_text2}][ext=mp4]+ba[ext=m4a]/b[ext=mp4]"
             else:
                 ytf = f"b[height<={raw_text2}]/bv[height<={raw_text2}]+ba/b/bv+ba"
-            user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-            referer = "https://www.youtube.com"
-
             if "jw-prod" in url:
-                cmd = f'yt-dlp --cookies "{cookies_path}" --user-agent "{user_agent}" --referer "{referer}" -o "{name}.mp4" "{url}"'
+                cmd = f'yt-dlp --cookies "{cookies_path}" -o "{name}.mp4" "{url}"'
             else:
-                cmd = f'yt-dlp --cookies "{cookies_path}" --user-agent "{user_agent}" --referer "{referer}" -f "{ytf}" "{url}" -o "{name}.mp4"'
+                cmd = f'yt-dlp --cookies "{cookies_path}" -f "{ytf}" "{url}" -o "{name}.mp4"'
+
 
             try:  
                 
