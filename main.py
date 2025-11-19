@@ -173,8 +173,8 @@ async def upload(bot: Client, m: Message):
 
             try:  
                 
-                cc = f'** {str(count).zfill(3)}.** {𝗻𝗮𝗺𝗲𝟭}{MR}.mkv\n\n**Batch Name :** {raw_text0}\n\n**Downloaded By :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})**'
-                cc1 = f'** {str(count).zfill(3)}.** {𝗻𝗮𝗺𝗲𝟭}{MR}.pdf \n\n**Batch Name :** {raw_text0}\n\n**Downloaded By :** [{m.from_user.first_name}](tg://user?id={m.from_user.id})**'                
+                cc = f'** {str(count).zfill(3)}.** {𝗻𝗮𝗺𝗲𝟭}.mkv\n\n**Batch Name :** {raw_text0}\n\n**Downloaded By : {MR}**'
+                cc1 = f'** {str(count).zfill(3)}.** {𝗻𝗮𝗺𝗲𝟭}.pdf \n\n**Batch Name :** {raw_text0}\n\n**Downloaded By : {MR}**'                
                 if "*" in url:
                      a, k = url.split("*", 1)
                      url = a
