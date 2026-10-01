@@ -1,24 +1,41 @@
-# Use a maintained slim image (bullseye instead of buster)
-FROM python:3.10-slim-bullseye
 
-# Install system dependencies
-RUN apt-get update -y && apt-get upgrade -y \
+FROM python:3.10-slim-bookworm
+
+RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
-        gcc libffi-dev musl-dev ffmpeg aria2 \
+        gcc \
+        libffi-dev \
+        ffmpeg \
+        aria2 \
+        qpdf \
+        curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Set work directory
+# ---------------------------------------------------------------
+# Workdir
+# ---------------------------------------------------------------
 WORKDIR /app
 
-# Copy requirements first (better build caching)
+# ---------------------------------------------------------------
+# Python dependencies (cached layer)
+# ---------------------------------------------------------------
 COPY requirements.txt .
-
-# Install Python dependencies
 RUN pip3 install --no-cache-dir --upgrade -r requirements.txt
 
-# Copy project files
+# ---------------------------------------------------------------
+# App files
+# ---------------------------------------------------------------
 COPY . .
 
-# Start both gunicorn and your main.py script
-CMD gunicorn app:app & python3 main.py
+# ---------------------------------------------------------------
+# Runtime env
+# ---------------------------------------------------------------
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1
+
+# ---------------------------------------------------------------
+# Start bot + web (Heroku needs both a bound port & the bot)
+# ---------------------------------------------------------------
+CMD gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --timeout 120 & python3 main.py
